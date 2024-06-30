@@ -1,0 +1,28 @@
+.pagination-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    bottom: 119px;
+    position: relative;
+    width: 300px;
+    align-items: center;
+    margin-inline: auto;
+}
+
+.pagination-wrapper p {
+    font-size: x-large;
+    color: coral;
+}
+
+.pagination-btn {
+    background-color: #fe5c36;
+    box-shadow: 0px 1px 16px 0px #ff806482;
+}
+
+.pagination-btn:active {
+    background-color: #fe5b3650;
+}
+
+.pagination-btn:disabled {
+    background-color: #8b868550;
+}
