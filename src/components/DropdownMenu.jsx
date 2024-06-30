@@ -39,15 +39,15 @@ const DropdownMenu = () => {
 
   const handleLogout = () => {
     // Handle logout functionality
-    logout()
     setIsMenuOpen(false);
-    navigate('/login');
+    logout()
+    
   };    
 
   const handleUserProfile = () => {
     // Handle user profile functionality
     setIsMenuOpen(false);
-    navigate(`/profile/${state?.user?.id}`);
+    
   };
   
 

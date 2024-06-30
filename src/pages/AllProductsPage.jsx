@@ -74,10 +74,10 @@ export const AllProductsPage = () => {
     return <LoadingSpinner />;
   }
 
-  if (!token) {
-    logout()
-    return <Navigate to="/login" replace />;
-  }
+  // if (!token) {
+  //   logout()
+  //   return <Navigate to="/login" replace />;
+  // }
 
     return (
         <div className='products-page'>

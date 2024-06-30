@@ -12,10 +12,10 @@ const LoginPage = () => {
     const { state, isAuthenticated, token } = useAuth()
 
     useEffect(()=> {
-        if(token){
+        if(isAuthenticated){
             return navigate('/products')
         }
-    }, [token, navigate])
+    }, [isAuthenticated])
 
 
     if(state.isLoading){

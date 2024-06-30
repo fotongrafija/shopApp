@@ -14,8 +14,8 @@ const ProtectedRoute = ({ role }) => {
 
     if (isLoading) return <LoadingSpinner />;
 
-    if (!token ) {
-        logout()
+    if (!isAuthenticated || !token ) {
+        
       return <Navigate to="/login" replace />;
     } 
   
