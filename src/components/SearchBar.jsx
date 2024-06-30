@@ -9,15 +9,11 @@ import '../styles/searchBar.css'
 const SearchBar = ({ onChange }) => {
 
   const [input, setInput] = useState('');
-  
-
-  
-
  
 
   const debouncedSearch = useCallback(debounce((text) => {
       onChange(text);
-    }, 1000), [onChange]
+    }, 300), [onChange]
   );
 
   useEffect(() => {

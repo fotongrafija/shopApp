@@ -48,9 +48,6 @@ export function AuthProvider({children}){
 
 
  
-  
-
-
   useEffect(() => {
     if (!token) return
     getMe()
@@ -58,9 +55,6 @@ export function AuthProvider({children}){
 
 
   const signedUserRole = useMemo(() => state?.user?.role, [state.user]);
-
-  // const isAuthenticated = useMemo(() => state?.isLoggedIn, [state.isLoggedIn]);
-
 
   
 

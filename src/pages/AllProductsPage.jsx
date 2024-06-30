@@ -1,11 +1,10 @@
 
-import React, { useEffect, useState, useCallback} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import  SearchBar  from '../components/SearchBar'
 import { PaginationComponent } from '../components/PaginationComponent';
 import { FaArrowUpWideShort } from "react-icons/fa6";
 import { FaArrowDownWideShort } from "react-icons/fa6";
-import LoadingSpinner from '../components/LoadingSpinner';
 
 
 // This page will show all products
@@ -15,23 +14,20 @@ export const AllProductsPage = () => {
 
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(null);
   
   const [skipProducts, setSkipProducts] = useState(0);
 
-  const [sortBy, setSortBy] = useState(null)
-  const [sortOrder, setSortOrder] = useState(null)
+  const [sortBy, setSortBy] = useState('')
+  const [sortOrder, setSortOrder] = useState('')
 
   const [searchQuery, setSearchQuery] = useState('')
 
   
 
-  
-
-
   const handleSearch = (value) => {
     // search functionality
-    setSkipProducts(null)
+    setSkipProducts(0)
     setSearchQuery(value)
   };
 
@@ -49,8 +45,6 @@ export const AllProductsPage = () => {
         const queryString = params.toString()
         if (queryString) url += `?${queryString}`
       try {
-        
-        setIsLoading(true);
         setIsError(false);
         const res = await fetch(url);
         const data = await res.json();
@@ -78,14 +72,7 @@ export const AllProductsPage = () => {
     setSortBy(e.target.value)
   }
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  // if (!token) {
-  //   logout()
-  //   return <Navigate to="/login" replace />;
-  // }
+  
 
     return (
         <div className='products-page'>
@@ -108,10 +95,10 @@ export const AllProductsPage = () => {
         
         <div className={'products-wrapper'}>
           {data?.products?.map((product) =>
-            <div className={'products-item'} onClick={() => handleProductClick(product.id)} key={product.id}>
-              <img src={product.thumbnail} alt={product.title} />
-              <p>{product.title}</p>
-              <span>{product.price} $</span>
+            <div className={'products-item'} onClick={() => handleProductClick(product?.id)} key={product.id}>
+              <img src={product?.thumbnail} alt={product?.title} />
+              <p>{product?.title}</p>
+              <span>{product?.price} $</span>
           </div>)}
         </div>
         <PaginationComponent 
