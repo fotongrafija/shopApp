@@ -12,13 +12,13 @@ export const SingleProductPage = () => {
     useEffect(() => {
         async function getItem() {
             try {
-              setIsLoading(true);
-              setIsError(false);
-              const res = await fetch(`https://dummyjson.com/products/${productId}`,);
-              const data = await res.json();
-              setProduct(data)
+                setIsLoading(true);
+                setIsError(false);
+                const res = await fetch(`https://dummyjson.com/products/${productId}`,);
+                const data = await res.json();
+                setProduct(data)
             } catch (e) {
-              setIsError(true);
+                setIsError(true);
             } finally {
                 setIsLoading(false);
             }

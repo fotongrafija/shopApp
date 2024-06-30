@@ -42,7 +42,7 @@ const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = u
 
 const onSubmit = async (data) => {
   await login(data.username, data.password)
-  navigate('/products')
+  // navigate('/products')
   reset() // Reset the form after submission
 }
 

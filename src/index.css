@@ -138,8 +138,25 @@ button {
 
 .not-found-page {
   text-align: center;
-  margin-top: 100px;
+  padding-top: 250px;
 }
+
+.not-found-btn {
+  background-color: #fe5c36;
+  box-shadow: 0 10px 20px rgba(238, 117, 117, 0.74);
+}
+
+.not-found-btn:hover {
+  cursor: pointer;
+  transform: scaleX(1.1) scaleY(1.1);
+  transition: all 0.5s ease-in-out;
+}
+
+.not-found-btn:active {
+  background-color: #8b554880;
+}
+
+
 
 
 .footer-container {

@@ -1,5 +1,6 @@
+
 import {createContext, useContext, useEffect, useMemo, useReducer, useState} from "react";
-import { useNavigate } from 'react-router-dom'
+
 
 const AuthContext = createContext()
 
@@ -41,22 +42,24 @@ export function AuthProvider({children}){
     return localStorage.getItem('token')
   })
 
+  const [ isAuthenticated, setIsAuthenticated ] = useState(null)
+
   const [state, dispatch] = useReducer(reducer, initialState)
 
 
   
 
   useEffect(() => {
-    
+    if (!token) return
     getMe()
   }, []) 
 
 
   const signedUserRole = useMemo(() => state?.user?.role, [state.user]);
 
-  const isAuthenticated = useMemo(() => state?.isLoggedIn, [state.isLoggedIn]);
+  // const isAuthenticated = useMemo(() => state?.isLoggedIn, [state.isLoggedIn]);
 
-  const saveToken = useMemo(() => localStorage.getItem('token'), [])
+
 
   console.log(signedUserRole, isAuthenticated)
 
@@ -69,12 +72,16 @@ export function AuthProvider({children}){
         headers: { 'Authorization': `Bearer ${token}` },
       })
       const data = await response.json()
+      if (response.status !== 200) throw new Error('Invalid/Expired Token!');
       dispatch({type: 'LOGIN', payload: data })
       localStorage.setItem('role', data?.role)
-      console.log(data)
+      
+      
+      setIsAuthenticated(true)
     } catch (e) {
+      if (e.message === 'Invalid/Expired Token!') logout();
       console.log(e.message) 
-      logout();
+      
       dispatch({type: 'LOADING', payload: false})
     }
   }
@@ -88,16 +95,17 @@ export function AuthProvider({children}){
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
 
-          username: username,
-          password: password,
+          username,
+          password,
           expiresInMins: 30, // optional, defaults to 60
         })
       })
       const data = await response.json()
-      dispatch({type: 'LOGIN', payload: data})
+      
       console.log(data)
-      setToken(data?.token)
       localStorage.setItem('token', data?.token)
+      setToken(data?.token)
+      
       getMe();
     }
     catch (e) {
@@ -108,6 +116,7 @@ export function AuthProvider({children}){
 
   const logout = () => {
     dispatch({type: 'LOGOUT'})
+    setIsAuthenticated(false)
     localStorage.removeItem('token')
     localStorage.removeItem('role')
     

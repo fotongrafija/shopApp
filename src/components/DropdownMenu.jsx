@@ -12,7 +12,7 @@ const DropdownMenu = () => {
   const menuRef = useRef(null);
   
 
-  const navigate = useNavigate();
+  
 
   const { logout, state } = useAuth();
   

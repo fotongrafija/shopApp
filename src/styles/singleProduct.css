@@ -51,15 +51,19 @@
 }
 
 .back-btn {
-    background-image: linear-gradient(162deg, #76e7f8, #53afbe);
+    background-image: linear-gradient(162deg, #feb4492e, #feb449);
     border: 0;
     height: 2.8rem;
     border-radius: 25px;
     font-weight: 600;
-    color: white;
+    color: rgb(65, 11, 11);
     transition: all 0.5s;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
     margin-top: 36px;
+}
+
+#dark .back-btn {
+    color: beige;
 }
 
 .back-btn:hover {

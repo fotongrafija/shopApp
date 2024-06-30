@@ -8,9 +8,9 @@ const LandingPage = () => {
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
 
-  if (isAuthenticated) {
-    return navigate('/products')
-}
+//   if (isAuthenticated) {
+//     return navigate('/products')
+// }
   return (
     <div className='landing-page-container'>
         <img src={logo} alt="" />

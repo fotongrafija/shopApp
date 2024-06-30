@@ -6,21 +6,20 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const LoginPage = () => {
     
-
     const navigate = useNavigate()
     
-    const { state, isAuthenticated, token } = useAuth()
+    const { state } = useAuth()
 
-    useEffect(()=> {
-        if(isAuthenticated){
-            return navigate('/products')
-        }
-    }, [isAuthenticated])
-
+        useEffect(()=> {
+            if(state.isLoggedIn){
+                return navigate('/products')
+            }
+        }, [state.isLoggedIn])
 
     if(state.isLoading){
         return <LoadingSpinner />
     }
+
     return (
         <div>
             <LoginForm />
