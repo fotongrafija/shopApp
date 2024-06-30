@@ -47,7 +47,9 @@ export function AuthProvider({children}){
   const [state, dispatch] = useReducer(reducer, initialState)
 
 
+ 
   
+
 
   useEffect(() => {
     if (!token) return
@@ -60,6 +62,7 @@ export function AuthProvider({children}){
   // const isAuthenticated = useMemo(() => state?.isLoggedIn, [state.isLoggedIn]);
 
 
+  
 
   console.log(signedUserRole, isAuthenticated)
 
@@ -73,10 +76,8 @@ export function AuthProvider({children}){
       })
       const data = await response.json()
       if (response.status !== 200) throw new Error('Invalid/Expired Token!');
-      dispatch({type: 'LOGIN', payload: data })
+        dispatch({type: 'LOGIN', payload: data })
       localStorage.setItem('role', data?.role)
-      
-      
       setIsAuthenticated(true)
     } catch (e) {
       if (e.message === 'Invalid/Expired Token!') logout();
