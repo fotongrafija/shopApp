@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import  SearchBar  from '../components/SearchBar'
@@ -5,6 +6,7 @@ import { PaginationComponent } from '../components/PaginationComponent';
 import { FaArrowUpWideShort } from "react-icons/fa6";
 import { FaArrowDownWideShort } from "react-icons/fa6";
 import LoadingSpinner from '../components/LoadingSpinner';
+import { useAuth } from '../context/context';
 
 // This page will show all products
 export const AllProductsPage = () => {
@@ -20,6 +22,8 @@ export const AllProductsPage = () => {
 
   const [sortBy, setSortBy] = useState(null)
   const [sortOrder, setSortOrder] = useState(null)
+
+  const {token, logout} = useAuth()
 
   const handleSearch = (value) => {
     // search functionality
@@ -68,6 +72,11 @@ export const AllProductsPage = () => {
 
   if (isLoading) {
     return <LoadingSpinner />;
+  }
+
+  if (!token) {
+    logout()
+    return <Navigate to="/login" replace />;
   }
 
     return (

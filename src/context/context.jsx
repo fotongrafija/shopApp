@@ -47,7 +47,7 @@ export function AuthProvider({children}){
   
 
   useEffect(() => {
-    if (!saveToken) return
+    if (!token) return
     getMe()
   }, []) 
 
@@ -107,9 +107,10 @@ export function AuthProvider({children}){
   }
 
   const logout = () => {
-    dispatch({type: 'LOGOUT'})
+    
     localStorage.removeItem('token')
     localStorage.removeItem('role')
+    dispatch({type: 'LOGOUT'})
   }
 
   const contextValue = {

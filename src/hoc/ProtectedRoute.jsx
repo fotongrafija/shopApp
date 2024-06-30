@@ -9,12 +9,13 @@ import LoadingSpinner from "../components/LoadingSpinner";
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ role }) => {
 
-    const { isLoading, isAuthenticated, signedUserRole, token } = useAuth();
+    const { isLoading, isAuthenticated, signedUserRole, token, logout } = useAuth();
 
 
     if (isLoading) return <LoadingSpinner />;
 
     if (!token ) {
+        logout()
       return <Navigate to="/login" replace />;
     } 
   
